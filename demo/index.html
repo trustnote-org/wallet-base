@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>demo</title>
+    <style>
+        p {
+            font-size: 1.2em;
+            font-weight: bold;
+        }
+        p span {
+            color: blue;
+        }
+    </style>
+</head>
+<body>
+    <h1>wallet-base</h1>
+    <div id="container">
+        <p>mnemonic: <span id="mnemonic"></span></p>
+    </div>
+</body>
+<script src="../public/core.js"></script>
+<script>
+ var mnemonic = window.Client.mnemonic();
+ setHTMLtoId("mnemonic", mnemonic);
+
+function setHTMLtoId(id, value) {
+    document.getElementById(id).innerHTML = value;
+}
+</script>
+</html>
