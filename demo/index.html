@@ -1,33 +1,70 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>demo</title>
     <style>
+        input {
+            width: 600px;
+            height: 20px;
+        }
+
         p {
             font-size: 1.2em;
             font-weight: bold;
         }
+
         p span {
             color: blue;
         }
     </style>
 </head>
+
 <body>
     <h1>wallet-base</h1>
+    <div>
+        <form>
+            <input type="text" id="inputMnemonic">
+            <button type="button" onclick="refresh(this)">提交助记词</button>
+        </form>
+    </div>
     <div id="container">
-        <p>mnemonic: <span id="mnemonic"></span></p>
+        <p>mnemonic:
+            <span id="mnemonic"></span>
+        </p>
+        <p>xPrivKey:
+            <span id="xPrivKey"></span>
+        </p>
+        <p>xPubKey:
+            <span id="xPubKey"></span>
+        </p>
     </div>
 </body>
 <script src="../public/core.js"></script>
 <script>
- var mnemonic = window.Client.mnemonic();
- setHTMLtoId("mnemonic", mnemonic);
+    function refresh() {
+        if (document.getElementById("inputMnemonic").value) {
+            var mnemonic = document.getElementById("inputMnemonic").value;
+            setHTMLtoId("mnemonic", mnemonic);
 
-function setHTMLtoId(id, value) {
-    document.getElementById(id).innerHTML = value;
-}
+        } else {
+            var mnemonic = window.Client.mnemonic();
+            setHTMLtoId("mnemonic", mnemonic);
+        }
+        var xPrivKey = window.Client.xPrivKey(mnemonic);
+        setHTMLtoId("xPrivKey", xPrivKey);
+
+        var xPubKey = window.Client.xPubKey(xPrivKey);
+        setHTMLtoId("xPubKey", xPubKey);
+    }
+
+    function setHTMLtoId(id, value) {
+        document.getElementById(id).innerHTML = value;
+    }
+    window.onload = refresh();
 </script>
+
 </html>
