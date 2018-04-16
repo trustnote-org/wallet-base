@@ -45,6 +45,8 @@
 </body>
 <script src="../public/core.js"></script>
 <script>
+    if(window.Client == undefined)
+        alert("cd .\nnpm install\ngrunt");
     function refresh() {
         if (document.getElementById("inputMnemonic").value) {
             var mnemonic = document.getElementById("inputMnemonic").value;
