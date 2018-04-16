@@ -27,8 +27,8 @@
     <h1>wallet-base</h1>
     <div>
         <form>
-            <input type="text" id="inputMnemonic">
-            <button type="button" onclick="refresh(this)">提交助记词</button>
+            <input type="text" id="inputMnemonic" placeholder="12 key words">
+            <button type="button" onclick="refresh(this)">submit</button>
         </form>
     </div>
     <div id="container">
@@ -45,14 +45,21 @@
 </body>
 <script src="../public/core.js"></script>
 <script>
-    if(window.Client == undefined)
+    if (window.Client == undefined)
         alert("cd .\nnpm install\ngrunt");
+
     function refresh() {
-        if (document.getElementById("inputMnemonic").value) {
-            var mnemonic = document.getElementById("inputMnemonic").value;
+        var inputMnemonic = document.getElementById("inputMnemonic").value;
+        inputMnemonic = inputMnemonic ? inputMnemonic.split(" ") : "";
+        if (inputMnemonic.length == 12) {
+            var mnemonic = inputMnemonic.join(" ");
             setHTMLtoId("mnemonic", mnemonic);
 
         } else {
+            if (inputMnemonic.length > 0) {
+                alert("mnemonic 12 words!!!")
+                return;
+            }
             var mnemonic = window.Client.mnemonic();
             setHTMLtoId("mnemonic", mnemonic);
         }
