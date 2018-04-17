@@ -52,7 +52,17 @@ function getChash160(obj) {
 }
 
 function getBase64Hash(obj) {
-    return crypto.createHash("sha256").update(getSourceString(obj), "utf8").digest("base64");
+    try {
+        if (typeof (obj) == "string")
+            var objUnit = JSON.parse(obj);
+        else if (typeof (obj) == "object")
+            var objUnit = obj;
+        else
+            return 0;
+        return crypto.createHash("sha256").update(getSourceString(objUnit), "utf8").digest("base64");
+    } catch (error) {
+        return 0;
+    }
 }
 
 function getNakedUnit(objUnit) {
