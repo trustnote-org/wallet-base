@@ -51,6 +51,10 @@ function getChash160(obj) {
     return chash.getChash160(getSourceString(obj));
 }
 
+function getBase64Hash(obj) {
+    return crypto.createHash("sha256").update(getSourceString(obj), "utf8").digest("base64");
+}
+
 function getNakedUnit(objUnit) {
     var objNakedUnit = objUnit;
     delete objNakedUnit.unit;
@@ -109,6 +113,7 @@ function getDeviceMessageHashToSign(objDeviceMessage) {
 
 exports.getSourceString = getSourceString;
 exports.getChash160 = getChash160;
+exports.getBase64Hash = getBase64Hash;
 exports.getUnitHashToSign = getUnitHashToSign;
 exports.getDeviceAddress = getDeviceAddress;
 exports.getDeviceMessageHashToSign = getDeviceMessageHashToSign;

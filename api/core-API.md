@@ -139,4 +139,13 @@ Client.getDeviceMessageHashToSign(unit)
  */
 Client.getUnitHashToSign(unit)
 
+/**
+ * 获得base64hash
+ * @method getBase64Hash
+ * @for Base
+ * @param {string}  单元JSON字符串
+ * @return {string} base64过的hash
+ */
+Client.getBase64Hash(unit)
+
 ```

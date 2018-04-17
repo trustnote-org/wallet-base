@@ -9,6 +9,7 @@ var Base = {};
 
 Base.getDeviceMessageHashToSign = objectHash.getDeviceMessageHashToSign;
 Base.getUnitHashToSign = objectHash.getUnitHashToSign;
+Base.getBase64Hash = objectHash.getBase64Hash;
 
 //生成助记词
 Base.mnemonic = function () {
