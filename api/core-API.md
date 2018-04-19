@@ -80,6 +80,16 @@ Client.deviceAddress(xPrivKey)
 Client.walletAddress(wallet_xPubKey, num)
 
 /**
+ * 生成钱包地址对应的公钥
+ * @method walletAddress
+ * @for Base
+ * @param {string}  钱包公钥
+ * @param {int}     地址index 0-
+ * @return {string} 钱包地址对应的公钥
+ */
+Clien.walletAddressPubkey(wallet_xPubKey, num)
+
+/**
  * 签名
  * @method sign
  * @for Base

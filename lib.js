@@ -101,18 +101,28 @@ Base.walletAddress = function (wallet_xPubKey, num) {
     }
 }
 
+//生成钱包地址对应的公钥
+Base.walletAddressPubkey = function (wallet_xPubKey, num) {
+    try {
+        wallet_xPubKey = Bitcore.HDPublicKey.fromString(wallet_xPubKey);
+        var wallet_xPubKey_base64 = wallet_xPubKey.derive('m/0/' + num).publicKey.toBuffer().toString("base64");
+        return wallet_xPubKey_base64;
+    } catch (error) {
+        return 0;
+    }
+}
+
 //签名
 Base.sign = function (b64_hash, xPrivKey, path) {
     try {
         var buf_to_sign = new Buffer(b64_hash, "base64");
-        if (path != "null") {   
+        if (path != "null") {
             var xPrivKey = new Bitcore.HDPrivateKey.fromString(xPrivKey);
             var privateKey = xPrivKey.derive(path).privateKey;
             var privKeyBuf = privateKey.bn.toBuffer({
                 size: 32
             });
-        }
-        else {
+        } else {
             var privKeyBuf = new Buffer(xPrivKey, "base64");
         }
         var res = ecdsa.sign(buf_to_sign, privKeyBuf);
