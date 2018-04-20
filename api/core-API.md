@@ -74,20 +74,22 @@ Client.deviceAddress(xPrivKey)
  * @method walletAddress
  * @for Base
  * @param {string}  钱包公钥
+ * @param {int}     收款地址为 0; 找零地址为 1;
  * @param {int}     地址index 0-
  * @return {string} 钱包地址
  */
-Client.walletAddress(wallet_xPubKey, num)
+Client.walletAddress(wallet_xPubKey, change, num)
 
 /**
  * 生成钱包地址对应的公钥
  * @method walletAddress
  * @for Base
  * @param {string}  钱包公钥
+ * @param {int}     收款地址为 0; 找零地址为 1;
  * @param {int}     地址index 0-
  * @return {string} 钱包地址对应的公钥
  */
-Clien.walletAddressPubkey(wallet_xPubKey, num)
+Clien.walletAddressPubkey(wallet_xPubKey, change, num)
 
 /**
  * 签名

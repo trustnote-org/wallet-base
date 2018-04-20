@@ -88,10 +88,10 @@ Base.deviceAddress = function (xPrivKey) {
 }
 
 //生成钱包的地址
-Base.walletAddress = function (wallet_xPubKey, num) {
+Base.walletAddress = function (wallet_xPubKey, change, num) {
     try {
         wallet_xPubKey = Bitcore.HDPublicKey.fromString(wallet_xPubKey);
-        var wallet_xPubKey_base64 = wallet_xPubKey.derive('m/0/' + num).publicKey.toBuffer().toString("base64");
+        var wallet_xPubKey_base64 = wallet_xPubKey.derive("m/" + change + "/" + num).publicKey.toBuffer().toString("base64");
         var address = objectHash.getChash160(["sig", {
             "pubkey": wallet_xPubKey_base64
         }]);
@@ -102,10 +102,10 @@ Base.walletAddress = function (wallet_xPubKey, num) {
 }
 
 //生成钱包地址对应的公钥
-Base.walletAddressPubkey = function (wallet_xPubKey, num) {
+Base.walletAddressPubkey = function (wallet_xPubKey, change, num) {
     try {
         wallet_xPubKey = Bitcore.HDPublicKey.fromString(wallet_xPubKey);
-        var wallet_xPubKey_base64 = wallet_xPubKey.derive('m/0/' + num).publicKey.toBuffer().toString("base64");
+        var wallet_xPubKey_base64 = wallet_xPubKey.derive("m/" + change + "/" + num).publicKey.toBuffer().toString("base64");
         return wallet_xPubKey_base64;
     } catch (error) {
         return 0;
