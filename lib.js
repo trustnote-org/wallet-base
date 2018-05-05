@@ -4,12 +4,16 @@ var crypto = require("crypto");
 var ecdsa = require('secp256k1');
 var Mnemonic = require("bitcore-mnemonic");
 var objectHash = require("./object_hash");
+var objectLength = require("./object_length");
 
 var Base = {};
 
 Base.getDeviceMessageHashToSign = objectHash.getDeviceMessageHashToSign;
 Base.getUnitHashToSign = objectHash.getUnitHashToSign;
 Base.getBase64Hash = objectHash.getBase64Hash;
+
+Base.getHeadersSize = objectLength.getHeadersSize;
+Base.getTotalPayloadSize = objectLength.getTotalPayloadSize;
 
 //生成助记词
 Base.mnemonic = function () {
