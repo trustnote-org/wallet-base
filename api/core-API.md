@@ -82,7 +82,7 @@ Client.walletAddress(wallet_xPubKey, change, num)
 
 /**
  * 生成钱包地址对应的公钥
- * @method walletAddress
+ * @method walletAddressPubkey
  * @for Base
  * @param {string}  钱包公钥
  * @param {int}     收款地址为 0; 找零地址为 1;
@@ -159,5 +159,23 @@ Client.getUnitHashToSign(unit)
  * @return {string} base64过的hash
  */
 Client.getBase64Hash(unit)
+
+/**
+ * 获得消息头字节数
+ * @method getHeadersSize
+ * @for Base
+ * @param {string}  单元JSON字符串
+ * @return {int}    字节数
+ */
+Client.getHeadersSize(Unit);
+
+/**
+ * 获得payload字节数
+ * @method getTotalPayloadSize
+ * @for Base
+ * @param {string}  单元JSON字符串
+ * @return {int}    字节数
+ */
+Client.getTotalPayloadSize(Unit);
 
 ```
