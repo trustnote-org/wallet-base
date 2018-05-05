@@ -143,7 +143,16 @@ Client.genPubKey(privKey)
 Client.getDeviceMessageHashToSign(unit)
 
 /**
- * 获得交易单元hash
+ * 获得交易单元unit hash
+ * @method getUnitHash
+ * @for Base
+ * @param {string}  消息JSON字符串
+ * @return {string} base64过的hash
+ */
+Client.getUnitHash(unit)
+
+/**
+ * 获得交易单元待签名hash
  * @method getUnitHashToSign
  * @for Base
  * @param {string}  单元JSON字符串
@@ -167,7 +176,7 @@ Client.getBase64Hash(unit)
  * @param {string}  单元JSON字符串
  * @return {int}    字节数
  */
-Client.getHeadersSize(Unit);
+Client.getHeadersSize(unit);
 
 /**
  * 获得payload字节数
@@ -176,6 +185,6 @@ Client.getHeadersSize(Unit);
  * @param {string}  单元JSON字符串
  * @return {int}    字节数
  */
-Client.getTotalPayloadSize(Unit);
+Client.getTotalPayloadSize(unit);
 
 ```

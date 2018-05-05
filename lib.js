@@ -11,6 +11,7 @@ var Base = {};
 Base.getDeviceMessageHashToSign = objectHash.getDeviceMessageHashToSign;
 Base.getUnitHashToSign = objectHash.getUnitHashToSign;
 Base.getBase64Hash = objectHash.getBase64Hash;
+Base.getUnitHash = objectHash.getUnitHash;
 
 Base.getHeadersSize = objectLength.getHeadersSize;
 Base.getTotalPayloadSize = objectLength.getTotalPayloadSize;

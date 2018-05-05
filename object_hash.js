@@ -84,6 +84,42 @@ function getNakedUnit(objUnit) {
     return objNakedUnit;
 }
 
+function getUnitContentHash(objUnit) {
+    return getBase64Hash(getNakedUnit(objUnit));
+}
+
+function getUnitHash(objUnit) {
+    try {
+        if (typeof (objUnit) == "string")
+            var objUnit = JSON.parse(objUnit);
+        else if (typeof (objUnit) == "object")
+            var objUnit = objUnit;
+        else
+            return 0;
+        if (objUnit.content_hash) // already stripped
+            return getBase64Hash(getNakedUnit(objUnit));
+        var objStrippedUnit = {
+            content_hash: getUnitContentHash(objUnit),
+            version: objUnit.version,
+            alt: objUnit.alt,
+            authors: objUnit.authors.map(function (author) { return { address: author.address }; }) // already sorted
+        };
+        if (objUnit.witness_list_unit)
+            objStrippedUnit.witness_list_unit = objUnit.witness_list_unit;
+        else
+            objStrippedUnit.witnesses = objUnit.witnesses;
+        if (objUnit.parent_units) {
+            objStrippedUnit.parent_units = objUnit.parent_units;
+            objStrippedUnit.last_ball = objUnit.last_ball;
+            objStrippedUnit.last_ball_unit = objUnit.last_ball_unit;
+        }
+        return getBase64Hash(objStrippedUnit);
+    } catch (error) {
+        return 0;
+    }
+
+}
+
 function getUnitHashToSign(objUnit) {
     try {
         if (typeof (objUnit) == "string")
@@ -125,5 +161,6 @@ exports.getSourceString = getSourceString;
 exports.getChash160 = getChash160;
 exports.getBase64Hash = getBase64Hash;
 exports.getUnitHashToSign = getUnitHashToSign;
+exports.getUnitHash = getUnitHash;
 exports.getDeviceAddress = getDeviceAddress;
 exports.getDeviceMessageHashToSign = getDeviceMessageHashToSign;
