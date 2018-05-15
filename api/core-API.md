@@ -119,7 +119,7 @@ Client.verify(b64_hash, sig, pub_key)
  * 生成m/1'私钥
  * @method m1PrivKey
  * @for Base
- * @param {void}
+ * @param {string}  根私钥
  * @return {string} base64编码的私钥
  */
 Client.m1PrivKey(xPrivKey)

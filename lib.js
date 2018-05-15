@@ -154,10 +154,14 @@ Base.verify = function (b64_hash, sig, pub_key) {
 //生成ecdsa签名公钥
 Base.ecdsaPubkey = function (xPrivKey, path) {
     try {
-        xPrivKey = Bitcore.HDPrivateKey.fromString(xPrivKey);
-        var priv_key = xPrivKey.derive(path).privateKey.bn.toBuffer({
-            size: 32
-        });
+        if (path != "null") {
+            xPrivKey = Bitcore.HDPrivateKey.fromString(xPrivKey);
+            var priv_key = xPrivKey.derive(path).privateKey.bn.toBuffer({
+                size: 32
+            });
+        } else {
+            var priv_key = new Buffer(xPrivKey, "base64");
+        }
         var pub_b64 = ecdsa.publicKeyCreate(priv_key, true).toString('base64');
         return pub_b64;
     } catch (error) {
