@@ -54,7 +54,9 @@ Client.walletID(walletPubKey)
  * 生成ecdsa签名公钥
  * @method ecdsaPubkey
  * @for Base
- * @param {string}  钱包私钥
+ * @param {string}  根私钥 or 临时私钥。
+ *                  若传递根私钥，则必须传递path派生路径；
+ *                  若传递临时私钥，则path需要传递字符串null；
  * @param {string}  派生路径
  * @return {string} 签名公钥
  */
