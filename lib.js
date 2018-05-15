@@ -165,6 +165,20 @@ Base.ecdsaPubkey = function (xPrivKey, path) {
     }
 }
 
+//生成m/1'私钥
+Base.m1PrivKey = function (xPrivKey) {
+    try {
+        var xPrivKey = new Bitcore.HDPrivateKey.fromString(xPrivKey);
+        var privateKey = xPrivKey.derive("m/1'").privateKey;
+        var privKeyBuf = privateKey.bn.toBuffer({
+            size: 32
+        });
+        return privKeyBuf.toString("base64");
+    } catch (error) {
+        return 0;
+    }
+}
+
 //生成临时私钥
 Base.genPrivKey = function () {
     var privKey;
