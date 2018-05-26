@@ -16,6 +16,16 @@ Base.getUnitHash = objectHash.getUnitHash;
 Base.getHeadersSize = objectLength.getHeadersSize;
 Base.getTotalPayloadSize = objectLength.getTotalPayloadSize;
 
+//生成随机数
+Base.randomBytes(num) {
+    try {
+        var random_base64 = crypto.randomBytes(num).toString("base64");
+        return random_base64;
+    } catch (error) {
+        return 0;
+    }
+}
+
 //生成助记词
 Base.mnemonic = function () {
     try {

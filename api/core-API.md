@@ -198,4 +198,13 @@ Client.getHeadersSize(unit);
  */
 Client.getTotalPayloadSize(unit);
 
+/**
+ * 生成随机字节数
+ * @method randomBytes
+ * @for Base
+ * @param {int}     字节数
+ * @return {string} 随机数的base64
+ */
+Client.randomBytes(num);
+
 ```
