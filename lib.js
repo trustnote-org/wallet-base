@@ -17,7 +17,7 @@ Base.getHeadersSize = objectLength.getHeadersSize;
 Base.getTotalPayloadSize = objectLength.getTotalPayloadSize;
 
 //生成随机数
-Base.randomBytes(num) {
+Base.randomBytes = function (num) {
     try {
         var random_base64 = crypto.randomBytes(num).toString("base64");
         return random_base64;
