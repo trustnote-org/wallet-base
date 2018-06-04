@@ -5,6 +5,7 @@ var ecdsa = require('secp256k1');
 var Mnemonic = require("bitcore-mnemonic");
 var objectHash = require("./object_hash");
 var objectLength = require("./object_length");
+var validation = require("./validation");
 
 var Base = {};
 
@@ -15,6 +16,8 @@ Base.getUnitHash = objectHash.getUnitHash;
 
 Base.getHeadersSize = objectLength.getHeadersSize;
 Base.getTotalPayloadSize = objectLength.getTotalPayloadSize;
+
+Base.isValidAddress = validation.isValidAddress;
 
 //生成随机数
 Base.randomBytes = function (num) {

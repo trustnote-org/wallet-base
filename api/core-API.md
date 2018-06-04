@@ -207,4 +207,13 @@ Client.getTotalPayloadSize(unit);
  */
 Client.randomBytes(num);
 
+/**
+ * 验证地址有效性
+ * @method isValidAddress
+ * @for Base
+ * @param {string}  地址字符串
+ * @return {bool}   验签结果
+ */
+Client.isValidAddress(num);
+
 ```
