@@ -214,6 +214,6 @@ Client.randomBytes(num);
  * @param {string}  地址字符串
  * @return {bool}   验签结果
  */
-Client.isValidAddress(num);
+Client.isValidAddress(address);
 
 ```
