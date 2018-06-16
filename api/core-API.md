@@ -72,6 +72,15 @@ Client.ecdsaPubkey(xPrivKey, path)
 Client.deviceAddress(xPrivKey)
 
 /**
+ * 根据公钥生成设备地址
+ * @method getDeviceAddress
+ * @for Base
+ * @param {string}  m/1 公钥
+ * @return {string} 设备地址
+ */
+Client.getDeviceAddress(pubkey)
+
+/**
  * 生成钱包的地址
  * @method walletAddress
  * @for Base

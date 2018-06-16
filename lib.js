@@ -9,6 +9,7 @@ var validation = require("./validation");
 
 var Base = {};
 
+Base.getDeviceAddress = objectHash.getDeviceAddress;
 Base.getDeviceMessageHashToSign = objectHash.getDeviceMessageHashToSign;
 Base.getUnitHashToSign = objectHash.getUnitHashToSign;
 Base.getBase64Hash = objectHash.getBase64Hash;
