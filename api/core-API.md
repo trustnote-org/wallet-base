@@ -225,4 +225,26 @@ Client.randomBytes(num);
  */
 Client.isValidAddress(address);
 
+/**
+ * 加密消息
+ * @method createEncryptedPackage
+ * @for Base
+ * @param {string}  待加密json字符串
+ * @param {string}  公钥
+ * @return {string} 密文
+ */
+Client.createEncryptedPackage(json, pubkey)
+
+/**
+ * 解密消息
+ * @method decryptPackage
+ * @for Base
+ * @param {string}  待解密字符串
+ * @param {string}  临时私钥
+ * @param {string}  上一个临时私钥
+ * @param {string}  m/1私钥
+ * @return {string} 明文字符串
+ */
+Client.decryptPackage(objEncryptedPackage, privKey, prePrivKey, m1PrivKey)
+
 ```
