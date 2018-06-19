@@ -1,1 +1,0 @@
-window.Client = require('./lib');
