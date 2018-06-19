@@ -7,26 +7,26 @@
 
 "use strict";
 var headlessWallet = require('../start.js');
-var conf = require('trustnote-common/conf.js');
-var eventBus = require('trustnote-common/event_bus.js');
-var db = require('trustnote-common/db.js');
-var mutex = require('trustnote-common/mutex.js');
-var storage = require('trustnote-common/storage.js');
-var constants = require('trustnote-common/constants.js');
-var validationUtils = require("trustnote-common/validation_utils.js");
+var conf = require('../trustnote-common/conf.js');
+var eventBus = require('../trustnote-common/event_bus.js');
+var db = require('../trustnote-common/db.js');
+var mutex = require('../trustnote-common/mutex.js');
+var storage = require('../trustnote-common/storage.js');
+var constants = require('../trustnote-common/constants.js');
+var validationUtils = require("../trustnote-common/validation_utils.js");
 var wallet_id;
 
 if (conf.bSingleAddress)
 	throw Error('can`t run in single address mode');
 
 function initRPC() {
-	var composer = require('trustnote-common/composer.js');
-	var network = require('trustnote-common/network.js');
+	var composer = require('../trustnote-common/composer.js');
+	var network = require('../trustnote-common/network.js');
 
 	var rpc = require('json-rpc2');
-	var walletDefinedByKeys = require('trustnote-common/wallet_defined_by_keys.js');
-	var Wallet = require('trustnote-common/wallet.js');
-	var balances = require('trustnote-common/balances.js');
+	var walletDefinedByKeys = require('../trustnote-common/wallet_defined_by_keys.js');
+	var Wallet = require('../trustnote-common/wallet.js');
+	var balances = require('../trustnote-common/balances.js');
 
 	var server = rpc.Server.$create({
 		'websocket': true, // is true by default
