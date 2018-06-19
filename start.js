@@ -81,26 +81,23 @@ function readKeys(onDone){
 				});
 			});
 		}
-		else{ // 2nd or later start
-			rl.question("Passphrase: ", function(passphrase){
-				rl.close();
-				if (process.stdout.moveCursor) process.stdout.moveCursor(0, -1);
-				if (process.stdout.clearLine)  process.stdout.clearLine();
-				var keys = JSON.parse(data);
-				var deviceTempPrivKey = Buffer(keys.temp_priv_key, 'base64');
-				var devicePrevTempPrivKey = Buffer(keys.prev_temp_priv_key, 'base64');
-				determineIfWalletExists(function(bWalletExists){
-					if (bWalletExists)
+		else{ // 2nd or later start				        					// start
+			var passphrase = '';
+			var keys = JSON.parse(data);
+			var deviceTempPrivKey = Buffer(keys.temp_priv_key, 'base64');
+			var devicePrevTempPrivKey = Buffer(keys.prev_temp_priv_key, 'base64');
+			determineIfWalletExists(function(bWalletExists){
+				if (bWalletExists)
+					onDone(keys.mnemonic_phrase, passphrase, deviceTempPrivKey, devicePrevTempPrivKey);
+				else{
+					var mnemonic = new Mnemonic(keys.mnemonic_phrase);
+					var xPrivKey = mnemonic.toHDPrivateKey(passphrase);
+					createWallet(xPrivKey, function(){
 						onDone(keys.mnemonic_phrase, passphrase, deviceTempPrivKey, devicePrevTempPrivKey);
-					else{
-						var mnemonic = new Mnemonic(keys.mnemonic_phrase);
-						var xPrivKey = mnemonic.toHDPrivateKey(passphrase);
-						createWallet(xPrivKey, function(){
-							onDone(keys.mnemonic_phrase, passphrase, deviceTempPrivKey, devicePrevTempPrivKey);
-						});
-					}
-				});
+					});
+				}
 			});
+
 		}
 	});
 }
