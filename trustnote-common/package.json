@@ -1,59 +1,5 @@
 {
-  "_from": "git+https://github.com/trustnote/trustnote-common.git",
-  "_id": "trustnote-common@0.1.0",
-  "_inBundle": false,
-  "_location": "/trustnote-common",
-  "_phantomChildren": {},
-  "_requested": {
-    "type": "git",
-    "raw": "trustnote-common@git+https://github.com/trustnote/trustnote-common.git",
-    "name": "trustnote-common",
-    "escapedName": "trustnote-common",
-    "rawSpec": "git+https://github.com/trustnote/trustnote-common.git",
-    "saveSpec": "git+https://github.com/trustnote/trustnote-common.git",
-    "fetchSpec": "https://github.com/trustnote/trustnote-common.git",
-    "gitCommittish": null
-  },
-  "_requiredBy": [
-    "/"
-  ],
-  "_resolved": "git+https://github.com/trustnote/trustnote-common.git#d9f9f199836d32259d065d7117a6a014195026bb",
-  "_spec": "trustnote-common@git+https://github.com/trustnote/trustnote-common.git",
-  "_where": "/Users/zhongjie/Desktop/node/trustnote/0606/lightwallet",
-  "author": {
-    "name": "Trustnote"
-  },
-  "browser": {
-    "request": "browser-request",
-    "secp256k1": "secp256k1/js"
-  },
-  "bugs": {
-    "url": "https://gitee.com/trustnote/trustnote-common/issues"
-  },
-  "bundleDependencies": false,
-  "dependencies": {
-    "async": "^1.5.2",
-    "lodash": "^4.6.1",
-    "longjohn": "^0.2.11",
-    "mysql": "^2.10.2",
-    "secp256k1": "^3.1.0",
-    "socks": "1.1.10",
-    "sqlite3": "^3.1.4",
-    "thirty-two": "^1.0.1",
-    "ws": "^1.0.1"
-  },
-  "deprecated": false,
-  "description": "Trustnote Common",
-  "homepage": "https://gitee.com/trustnote/trustnote-common",
-  "keywords": [
-    "trustnote",
-    "multisignature"
-  ],
   "license": "MIT",
   "name": "trustnote-common",
-  "repository": {
-    "url": "https://gitee.com/trustnote/trustnote-common.git",
-    "type": "git"
-  },
   "version": "0.1.0"
 }
