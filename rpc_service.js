@@ -210,17 +210,19 @@ function initRPC() {
 	/**
 	 * Send funds to address.
 	 * If address is invalid, then returns "invalid address".
+	 * @param {String} token (unit)
 	 * @param {String} address
 	 * @param {Integer} amount
 	 * @return {String} status
 	 */
 	server.expose('sendtoaddress', function(args, opt, cb) {
-		// return cb(null, null);
-		var amount = args[1];
-		var toAddress = args[0];
+		var asset = args[0]
+		var toAddress = args[1];
+		var amount = args[2];
+
 		if (amount && toAddress) {
 			if (validationUtils.isValidAddress(toAddress))
-				headlessWallet.issueChangeAddressAndSendPayment(null, amount, toAddress, null, function(err, unit) {
+				headlessWallet.issueChangeAddressAndSendPayment(asset, amount, toAddress, null, function(err, unit) {
 					cb(err, err ? undefined : unit);
 				});
 			else
