@@ -299,7 +299,7 @@ function initRPC() {
 
 	//light/get_history
 	server.expose('lightgethistory', function(args, opt, cb) {
-		const url = 'wss://victor.trustnote.org/tn';
+		const url = conf.WS_PROTOCOL + conf.hub; 
 		var myWitnesses = require('./trustnote-common/my_witnesses.js');
 		var network = require('./trustnote-common/network');
 		if (!Array.isArray(args)) {
@@ -323,7 +323,7 @@ function initRPC() {
 	});
 
 	server.expose('light/get_parents_and_last_ball_and_witness_list_unit', function(args, opt, cb) {
-		const url = 'wss://victor.trustnote.org/tn';
+		const url = conf.WS_PROTOCOL + conf.hub;
 		var myWitnesses = require('./trustnote-common/my_witnesses.js');
 		var network = require('./trustnote-common/network');
 		myWitnesses.readMyWitnesses(function(arrWitnesses){
