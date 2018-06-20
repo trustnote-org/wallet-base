@@ -313,8 +313,8 @@ function initRPC() {
 		        addresses: addresses,
 		        last_stable_mci: 0
 	        	// known_stable_units: ["5qQHxiyuv9IiN6wjQm0HhuUN9L93aZPyrLmeKn/CYiU="] 
-    		}
-    		network.findOutboundPeerOrConnect(url, function (err, ws){
+    		};
+    	    network.findOutboundPeerOrConnect(url, function (err, ws){
 			    network.sendRequest(ws, 'light/get_history', objRequest, false, function(ws, request, response){ 
 			    	cb(null,response);
 			    });
@@ -329,7 +329,7 @@ function initRPC() {
 		myWitnesses.readMyWitnesses(function(arrWitnesses){
 			var objRequest = {
 		        witnesses: arrWitnesses
-    		}
+    		};
     		network.findOutboundPeerOrConnect(url, function (err, ws){
 			    network.sendRequest(ws, 'light/get_parents_and_last_ball_and_witness_list_unit', objRequest, false, function(ws, request, response){ 
 			    	cb(null,response);
