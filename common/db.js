@@ -1,6 +1,6 @@
 'use strict'
 
-const tempdb = require('../common/db');
+const tempdb = require('../trustnote-common/db');
 
 class DataBase {
 
