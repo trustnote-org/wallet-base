@@ -1,5 +1,4 @@
-node_modules/sqlite3
-node_modules/sqlstring
+node_modules
 .vscode
 public
 package-lock.json
