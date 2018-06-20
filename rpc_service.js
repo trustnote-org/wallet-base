@@ -230,6 +230,8 @@ function initRPC() {
 			cb("wrong parameters");
 	});
 
+	
+
 	headlessWallet.readSingleWallet(function(_wallet_id) {
 		wallet_id = _wallet_id;
 		// listen creates an HTTP server on localhost only
