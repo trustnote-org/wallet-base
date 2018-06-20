@@ -2621,7 +2621,6 @@ exports.start = start;
 exports.postJointToLightVendor = postJointToLightVendor;
 exports.broadcastJoint = broadcastJoint;
 exports.sendPrivatePayment = sendPrivatePayment;
-
 exports.sendJustsaying = sendJustsaying;
 exports.sendError = sendError;
 exports.sendRequest = sendRequest;

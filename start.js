@@ -42,11 +42,6 @@ async function readKeys(onDone){
 	if (conf.payout_address)
 		console.log("payouts allowed to address: "+conf.payout_address);
 	console.log('-----------------------');
-    // let keys = fs.readFileSync(KEYS_FILENAME).toString();
-    // console.log('-------body',keys);
-    // if (keys) {
-
-    // }
 
 	fs.readFile(KEYS_FILENAME, 'utf8', function(err, data){
 		var rl = readline.createInterface({

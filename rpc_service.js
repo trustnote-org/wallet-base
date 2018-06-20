@@ -232,7 +232,111 @@ function initRPC() {
 			cb("wrong parameters");
 	});
 
-	
+	/**
+	 * Get funds of address.
+	 * If address is invalid, then returns "invalid address".
+	 * @param {String} address
+	 * @return {Object} info
+	 */
+	server.expose('getaddressinfo', function(args, opt, cb) {
+		var response = {};
+		let addressHelper = require('./common/address_helper');
+		let address = args[0];
+		if(address) {
+			if(validationUtils.isValidAddress(address)) {
+				 addressHelper.getAddressInfo(address, function(objTransactions, unspent, objBalance, end, definition, newLastInputsROWID, newLastOutputsROWID) {
+						cb(null, {
+							address: address,
+							objTransactions: objTransactions,
+							unspent: unspent,
+							objBalance: objBalance,
+							end: end,
+							definition: definition,
+							newLastInputsROWID: newLastInputsROWID,
+							newLastOutputsROWID: newLastOutputsROWID
+						});
+				});
+			} else {
+				cb("invalid address");
+			}
+		} else {
+			cb("invalid address");
+		}
+	});
+
+	/**
+	 * @return {Object} objBalance
+	 */
+	server.expose('getaddressbalance', function(args, opt, cb) {
+		var response = {};
+		let addressHelper = require('./common/address_helper');
+		let address = args[0];
+		if(address) {
+			if(validationUtils.isValidAddress(address)) {
+				 addressHelper.getAddressInfo(address, function(objTransactions, unspent, objBalance, end, definition, newLastInputsROWID, newLastOutputsROWID) {
+						cb(null, {
+							address: address,
+							objBalance: objBalance,
+						});
+				});
+			} else {
+				cb("invalid address");
+			}
+		} else {
+			cb("invalid address");
+		}
+	});
+
+	/**
+	 * @return {Array} witnesses
+	 */
+	server.expose('getwitnesses', function(args, opt, cb) {
+		var myWitnesses = require('./trustnote-common/my_witnesses.js');
+		myWitnesses.readMyWitnesses(function(arrWitnesses){
+			cb(null, arrWitnesses)
+		}, 'wait');
+	});
+
+	//light/get_history
+	server.expose('lightgethistory', function(args, opt, cb) {
+		const url = 'wss://victor.trustnote.org/tn';
+		var myWitnesses = require('./trustnote-common/my_witnesses.js');
+		var network = require('./trustnote-common/network');
+		if (!Array.isArray(args)) {
+			cb('params  must be a array');
+			return;
+		}
+		let addresses = args;
+		myWitnesses.readMyWitnesses(function(arrWitnesses){
+			var objRequest = {
+		        witnesses: arrWitnesses,
+		        addresses: addresses,
+		        last_stable_mci: 0
+	        	// known_stable_units: ["5qQHxiyuv9IiN6wjQm0HhuUN9L93aZPyrLmeKn/CYiU="] 
+    		}
+    		network.findOutboundPeerOrConnect(url, function (err, ws){
+			    network.sendRequest(ws, 'light/get_history', objRequest, false, function(ws, request, response){ 
+			    	cb(null,response);
+			    });
+			});
+		}, 'wait');
+	});
+
+	server.expose('light/get_parents_and_last_ball_and_witness_list_unit', function(args, opt, cb) {
+		const url = 'wss://victor.trustnote.org/tn';
+		var myWitnesses = require('./trustnote-common/my_witnesses.js');
+		var network = require('./trustnote-common/network');
+		myWitnesses.readMyWitnesses(function(arrWitnesses){
+			var objRequest = {
+		        witnesses: arrWitnesses
+    		}
+    		network.findOutboundPeerOrConnect(url, function (err, ws){
+			    network.sendRequest(ws, 'light/get_parents_and_last_ball_and_witness_list_unit', objRequest, false, function(ws, request, response){ 
+			    	cb(null,response);
+			    });
+			});
+		}, 'wait');
+	});
 
 	headlessWallet.readSingleWallet(function(_wallet_id) {
 		wallet_id = _wallet_id;

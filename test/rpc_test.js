@@ -1,8 +1,8 @@
 'use strict'
 
-const url = 'http://119.28.27.234:6552';
-// const request = require('request-promise-native');
-/*
+const url = 'http://127.0.0.1:8090';
+const request = require('request-promise-native');
+
 async function test () {
     let opt = {
         url : url,
@@ -12,14 +12,16 @@ async function test () {
     let body = {};
     body.jsonrpc = "2.0";
     body.id = "1";
-    // body.method = 'getnewaddress';
-    // body.method = 'listtransactions';
-    body.method = 'getaddressinfo';
+
+    body.method = 'getaddressbalance';
+    body.params = ['AC32OSLNT64L2B2GARP7SNFDPR3WDNZZ'];
+    /*
     // body.method =  'getbalance';
     // body.method =  'getalladdress';
-    body.params = ['T3Y2NXHU7NWG7YFKVAGL3US2JY5RQCD7'];
-
-
+    // body.method = 'getnewaddress';
+    // body.method = 'listtransactions';
+    // body.method = 'getaddressinfo';
+    */
     opt.body = JSON.stringify(body);
     let ret  = await request(opt);
     ret = JSON.parse(ret);
@@ -31,11 +33,7 @@ async function test () {
 }
 
 test();
-*/
+
 //curl --data '{"jsonrpc":"2.0", "id":1, "method":"getnewaddress", "params":{} }' http://127.0.0.1:8090
 //curl --data '{"jsonrpc":"2.0", "id":1, "method":"sendtoaddress", "params":["R2CJ353CPFT6ZB372H324A5VYOGPVOKI", 5] }' http://127.0.0.1:8090
 //curl --data '{"jsonrpc":"2.0", "id":1, "method":"getbalance", "params":{} }' http://127.0.0.1:6552
-
-
-
-// no witnesses yet, will retry later

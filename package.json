@@ -8,7 +8,7 @@
     "wallet",
     "headless",
     "trustnote",
-    "full node"
+    "light node"
   ],
   "license": "MIT",
   "repository": {
