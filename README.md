@@ -14,6 +14,15 @@ install
 How to use
 ---
 
+#### nodejs
+
+```
+let core = require("wallet-base/lib")
+```
+
+
+#### Web
+
 ```
 cd wallet-base
 npm install
