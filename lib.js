@@ -31,9 +31,9 @@ Base.randomBytes = function (num) {
 }
 
 //生成助记词
-Base.mnemonic = function () {
+Base.mnemonic = function (mnemonic) {
     try {
-        var mnemonic = new Mnemonic();
+        var mnemonic = new Mnemonic(mnemonic);
         return mnemonic.phrase;
     } catch (error) {
         return 0;
