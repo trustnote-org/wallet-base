@@ -41,9 +41,9 @@ Base.mnemonic = function (mnemonic) {
 }
 
 //根据助记词生成根私钥
-Base.xPrivKey = function (mnemonic) {
+Base.xPrivKey = function (mnemonic, password) {
     try {
-        var xPrivKey = new Mnemonic(mnemonic).toHDPrivateKey();
+        var xPrivKey = new Mnemonic(mnemonic).toHDPrivateKey(password);
         return xPrivKey.toString();
     } catch (error) {
         return 0;
