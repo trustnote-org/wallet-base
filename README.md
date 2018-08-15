@@ -17,7 +17,9 @@ How to use
 #### nodejs
 
 ```
-let core = require("wallet-base/lib")
+npm install https://github.com/trustnote/wallet-base.git --save
+
+let core = require("wallet-base")
 ```
 
 
@@ -29,7 +31,9 @@ npm install
 grunt
 ```
 
-include `public/core.js`
+- copy `public/core.js` to project
+- import js
+	`<script src="core.js"></script>`
 
 see `demo/index.html`
 

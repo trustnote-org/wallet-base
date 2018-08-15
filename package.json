@@ -2,7 +2,7 @@
   "name": "wallet-base",
   "version": "1.0.0",
   "description": "Base library for wallet develop",
-  "main": "index.js",
+  "main": "lib.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
