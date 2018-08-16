@@ -26,7 +26,7 @@ Base.randomBytes = function (num) {
         var random_base64 = crypto.randomBytes(num).toString("base64");
         return random_base64;
     } catch (error) {
-        return 0;
+        return "0";
     }
 }
 
@@ -36,7 +36,7 @@ Base.mnemonic = function (mnemonic) {
         var mnemonic = new Mnemonic(mnemonic);
         return mnemonic.phrase;
     } catch (error) {
-        return 0;
+        return "0";
     }
 }
 
@@ -46,7 +46,7 @@ Base.xPrivKey = function (mnemonic, password) {
         var xPrivKey = new Mnemonic(mnemonic).toHDPrivateKey(password);
         return xPrivKey.toString();
     } catch (error) {
-        return 0;
+        return "0";
     }
 }
 
@@ -56,7 +56,7 @@ Base.objPrivKey = function (xPrivKey) {
         var objPrivKey = new Bitcore.HDPrivateKey.fromString(xPrivKey);
         return objPrivKey;
     } catch (error) {
-        return 0;
+        return "0";
     }
 }
 
@@ -66,7 +66,7 @@ Base.xPubKey = function (xPrivKey) {
         var xPubKey = Bitcore.HDPublicKey(Bitcore.HDPrivateKey.fromString(xPrivKey));
         return xPubKey.toString();
     } catch (error) {
-        return 0;
+        return "0";
     }
 }
 
@@ -77,7 +77,7 @@ Base.walletPubKey = function (xPrivKey, num) {
         var wallet_xPubKey = Bitcore.HDPublicKey(xPrivKey.derive("m/44'/0'/" + num + "'"));
         return wallet_xPubKey.toString();
     } catch (error) {
-        return 0;
+        return "0";
     }
 }
 
@@ -87,7 +87,7 @@ Base.walletID = function (walletPubKey) {
         var wallet_Id = crypto.createHash("sha256").update(walletPubKey, "utf8").digest("base64");
         return wallet_Id;
     } catch (error) {
-        return 0;
+        return "0";
     }
 }
 
@@ -102,7 +102,7 @@ Base.deviceAddress = function (xPrivKey) {
         var device_address = objectHash.getDeviceAddress(pub_b64);
         return device_address;
     } catch (error) {
-        return 0;
+        return "0";
     }
 }
 
@@ -116,7 +116,7 @@ Base.walletAddress = function (wallet_xPubKey, change, num) {
         }]);
         return address;
     } catch (error) {
-        return 0;
+        return "0";
     }
 }
 
@@ -127,7 +127,7 @@ Base.walletAddressPubkey = function (wallet_xPubKey, change, num) {
         var wallet_xPubKey_base64 = wallet_xPubKey.derive("m/" + change + "/" + num).publicKey.toBuffer().toString("base64");
         return wallet_xPubKey_base64;
     } catch (error) {
-        return 0;
+        return "0";
     }
 }
 
@@ -147,7 +147,7 @@ Base.sign = function (b64_hash, xPrivKey, path) {
         var res = ecdsa.sign(buf_to_sign, privKeyBuf);
         return res.signature.toString("base64");
     } catch (error) {
-        return 0;
+        return "0";
     }
 }
 
@@ -157,11 +157,11 @@ Base.verify = function (b64_hash, sig, pub_key) {
         var buf_to_verify = new Buffer(b64_hash, "base64");
         var signature = new Buffer(sig, "base64"); // 64 bytes (32+32)
         if (ecdsa.verify(buf_to_verify, signature, new Buffer(pub_key, "base64")))
-            return 1;
+            return "1";
         else
-            return 0;
+            return "0";
     } catch (errer) {
-        return 0;
+        return "0";
     }
 }
 
@@ -179,7 +179,7 @@ Base.ecdsaPubkey = function (xPrivKey, path) {
         var pub_b64 = ecdsa.publicKeyCreate(priv_key, true).toString('base64');
         return pub_b64;
     } catch (error) {
-        return 0;
+        return "0";
     }
 }
 
@@ -193,7 +193,7 @@ Base.m1PrivKey = function (xPrivKey) {
         });
         return privKeyBuf.toString("base64");
     } catch (error) {
-        return 0;
+        return "0";
     }
 }
 
@@ -207,7 +207,7 @@ Base.genPrivKey = function () {
         while (!ecdsa.privateKeyVerify(privKey));
         return privKey.toString("base64");
     } catch (error) {
-        return 0;
+        return "0";
     }
 }
 
@@ -217,7 +217,7 @@ Base.genPubKey = function (privKey) {
         var pubKey = ecdsa.publicKeyCreate(new Buffer(privKey, "base64"), true).toString('base64');
         return pubKey;
     } catch (error) {
-        return 0;
+        return "0";
     }
 }
 
@@ -269,7 +269,7 @@ Base.createEncryptedPackage = function (json, pubkey) {
         };
         return JSON.stringify(encrypted_package);
     } catch (error) {
-        return 0;
+        return "0";
     }
 }
 
@@ -298,7 +298,7 @@ Base.decryptPackage = function (objEncryptedPackage, privKey, prePrivKey, m1Priv
             // console.log("message encrypted to permanent key");
         } else {
             // console.log("message encrypted to unknown key");
-            return 0;
+            return "0";
         }
 
         var deriveSharedSecret = function (ecdh, peer_b64_pubkey) {
@@ -335,7 +335,7 @@ Base.decryptPackage = function (objEncryptedPackage, privKey, prePrivKey, m1Priv
         } else
             return JSON.stringify(json);
     } catch (error) {
-        return 0;
+        return "0";
     }
 }
 module.exports = Base;
